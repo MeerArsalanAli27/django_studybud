@@ -1,0 +1,63 @@
+# Sensitive information
+*.key
+*.pem
+*.env
+*.secret
+settings.py
+env.py
+keys.json
+credentials.json
+secrets.json
+
+# Temporary files
+__pycache__/
+.idea/
+.vscode/
+*.pyc
+*.pyo
+*.swp
+.DS_Store
+
+# Database files
+db.sqlite3
+migrations/
+
+# Logs
+*.log
+logs/
+
+# Node.js and npm
+node_modules/
+package-lock.json
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# OS files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Django files
+*.pot
+*.po
+*.mo
+
+# Other files
+*.iml
+*.ipynb
+*.csv
+*.pdf
+*.docx
+*.xlsx
+*.pptx
+*.zip
+*.rar
+*.7z
+*.gz
+*.bz2
+*.tar
+*.tgz
+*.xz

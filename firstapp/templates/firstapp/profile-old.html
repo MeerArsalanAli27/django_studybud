@@ -1,0 +1,30 @@
+<style>
+    .page-container{
+        display: grid;
+        grid-template-columns: 1fr 3fr 1fr;
+    }
+</style>
+
+{% extends 'main.html'%}
+
+
+{% block content %}
+
+<h1>{{user1.username}}</h1>
+
+<div class="page-container">
+    <div>
+       {%include 'firstapp/topicscomponenet.html'%}
+    </div>
+
+    <div>
+         {% include 'firstapp/homefeed.html'%}
+    </div>
+
+    <div>
+
+      {%include 'firstapp/recentactivitycomponent.html'%}
+    </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>delete from</title>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        <h2>are you sure you want to deelte this rooom {{obj}}</h2>
+        <button type="submit">yes</button>
+    </form>
+    <button><a href="{% url 'home' %}">go back</a></button>
+</body>
+</html>

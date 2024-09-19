@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .room-container{
+        display:grid;
+        grid-template-columns: 3fr  1fr;
+    }
+    .part{
+        position: relative;
+        top:-16rem;
+    }
+    a{
+        text-decoration:none ;
+    }
+    
+    
+</style>
+<body>
+    {% extends 'main.html' %}
+    {% block content %}
+   
+<div class="room-container">
+
+    <div>
+
+        
+        <div>
+            <h1>{{room1.name}}</h1>
+            <br>
+            <br>
+            
+            <h3>description:{{room1.description}}</h3>
+            
+        </div>
+        <br>
+        <div>
+            {% for message in roommessage %}
+            <div>
+                <hr>
+                <!-- here message.create give date along with time but we want to shoe only exact time when this message or commnet is create forthis reason | (or) is used along with timesince to get exact time of message-->
+                <small>@ {{message.user}}  {{message.created| timesince }}</small> 
+                <br>
+                <br>
+                <p>{{message.body}}</p>
+                <br>
+                {% if request.user == message.user %}
+                <span><a href="{% url 'deletemessage' message.id %}">delete</a></span>
+                <br>
+                {%endif%}
+                
+            </div>
+            
+            {% endfor %}
+        </div>
+        <br>
+        
+        {% if request.user.is_authenticated %}
+        <div class="comment-form">
+            <form action="" method="post">
+                {% csrf_token %}
+                <input type="text" name="body" placeholder="enter your message....">
+            </form>
+            
+        </div>
+        {% endif %}
+        
+    </div>
+    <div class="part">
+        <h2>participants</h2>
+        <br>
+        {% for p in part %}
+        <p> @ {{p.username}}</p>
+       
+        <br>
+        {%endfor%}
+    </div>
+    
+    
+</div>
+    
+    {% endblock %}
+</body>
+</html>

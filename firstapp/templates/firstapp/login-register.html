@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Page</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    
+    .login-container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        height: 50vh;
+        width: 30vw;
+    }
+
+    .login-container h2 {
+        text-align: center;
+    }
+
+    .login-container form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .login-container input[type="text"],
+    .login-container input[type="password"] {
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .login-container input[type="submit"] {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+    }
+
+    .login-container input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+    button{
+        background-color: #db2632;
+        color: rgb(247, 247, 247);
+        border: none;
+        padding: 12px 20px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+
+    }
+    li{
+        list-style: none;
+    }
+
+    
+
+    .form-container {
+    /* Your container styles */
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #c1c1c1;
+}
+
+.para{
+    background-color:  #4caf50;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+
+
+}
+
+.submit-btn {
+    /* Your submit button styles */
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+a{
+    text-decoration: none;
+    color: white ;
+}
+
+.submit-btn:hover {
+    background-color: #45a049;
+}
+.heading{
+    color:cornflowerblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+</style>
+</head>
+<body>
+    {% if paage == 'login' %}
+
+    <div class="login-container">
+        <h2>Login</h2>
+        <form action="{% url 'loginform'%}" method="post">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="submit" value="Login">
+            <br>
+            
+        </form>
+        <button><a href="{% url 'home' %}">go back</a></button>
+        <div >
+            <p>haven't signed up yet!!</p>
+            <span class="para">
+
+                <a href="{% url 'registeruser'%}">signup</a>
+            </span>
+        </div>
+
+
+
+
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+    
+     {%else%}
+     <div class="form-container">
+        <h1 class="heading">register form</h1>
+        <br>
+        <form action="{% url 'registeruser' %}" method="post" class="my-form">
+            {% csrf_token %}
+            {{ form1.as_p }}
+            <input type="submit" value="Submit" class="submit-btn">
+
+    
+                <p >already signup??? log in here</p>
+                <span class="submit-btn">
+
+                    
+                    <a href="{% url 'loginform'%}">log in</a>
+                </span>
+            
+
+
+        </form>
+
+
+    </div>
+    
+    
+    {% endif %}
+</body>
+</html>

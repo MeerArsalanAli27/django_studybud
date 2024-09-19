@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="{% static 'styles/main.css' %}">
+<title>Navigation Bar</title>
+<style>
+  /* Basic CSS Reset */
+
+  .home{
+      display: grid;
+      grid-template-columns: 1fr 3fr 1fr;
+    }
+</style>
+</head>
+<body>
+<!--this is the navbar component which you can see at home page you inlcude this navabar else where as u wish-->
+{% include 'firstapp/navigationbar.html'%}
+
+
+
+<div>
+
+
+
+
+<div class="home">
+  <div>
+    <br>
+    {% if request.user.is_authenticated %}
+    <h2>{{rooms_count}} rooms are available right now!!!!</h2> 
+    <br>
+
+    <h2>hello {{request.user.username}}</h2>
+    <br>
+    <h3><a href="{% url 'logoutuser' %}">log out</a></h3>
+    {% else%}
+    <h3><a href="{% url 'loginform' %}">login</a></h3>
+    {% endif %}
+
+  
+    <br>
+    <br>
+   
+    <br>
+    <!--this is list of all topics componenet -->
+   {% include 'firstapp/topicscomponenet.html'%}
+  </div>
+  
+  <div>
+  <br>
+  <h3 style="margin-bottom: 10px;"><a href="createroom/">create room</a></h3>
+     
+ <!--this is home feed component that contains all info with update and delete as u can see in home page all rooms this is that-->
+       {% include 'firstapp/homefeed.html'%}
+ 
+    
+  </div>
+
+
+<div>
+  <!--this recent activity  component-->
+{% include 'firstapp/recentactivitycomponent.html'%}
+
+</div>
+
+
+
+</div>
+
+</div>
+
+</body>
+</html>
